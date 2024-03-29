@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Users\ruby_\Desktop\c++\VisStudTest\CA2_BugsLife\CA2_BugsLife\main.cpp(19,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  CA2_BugsLife.vcxproj -> C:\Users\ruby_\Desktop\c++\VisStudTest\CA2_BugsLife\Debug\CA2_BugsLife.exe

@@ -7,10 +7,12 @@
 
 #include "Bug.h"
 
-class Craweler :  public  Bug{
+class Crawler : public  Bug {
 
 public:
     using Bug::Bug;
+
+    
 
 };
 

@@ -22,27 +22,30 @@ class Bug {
 
 public:
 
-    Bug(unsigned int id, unsigned int x, unsigned int y, unsigned int size, int* w, int* h, direction dir=north) ;
+    Bug(unsigned int id, unsigned int x, unsigned int y, unsigned int size, int* w, int* h, direction dir = north);
 
     unsigned int getId() const;
 
 
-    unsigned int getX() const ;
-    unsigned int getY() const ;
+    int getX() const;
+    int getY() const;
 
     void setX(const unsigned int x);
     void setY(const unsigned int y);
 
     direction getDir() const;
+    void setDir(direction d);
 
     unsigned int getSize() const;
 
     bool isAlive() const;
 
-    const std::list<std::pair<int, int>> &getPath() const;
+    const std::list<std::pair<int, int>>& getPath() const;
 
-    virtual void move() ;
-    bool isWayBlocked() ;
+    virtual void move();
+    virtual void changePos(int* z, int by);
+
+    bool isWayBlocked();
 
 };
 

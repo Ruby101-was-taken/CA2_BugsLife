@@ -1,7 +1,8 @@
 #include "generalFunctions.h"
 #include <random>
+#include <iostream>
 
 
-int generalFunctions::randInt(int min, int max) {
-	return min + (rand() % (max - min));
+int randInt(int min, int max) {
+	return min + (rand() % (max - min + 1));
 }

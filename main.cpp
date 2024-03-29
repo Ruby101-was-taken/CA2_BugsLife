@@ -5,10 +5,9 @@
 
 #include "generalFunctions.h"
 
-#include "Craweler.h"
+#include "Crawler.h"
 
 #include <random>
-
 
 using namespace std;
 
@@ -18,17 +17,27 @@ int main() {
 
     srand(time(NULL));
 
-    cout << north << endl;
+    int* wPtr = &w, * hPtr = &h;
 
-    int *wPtr = &w, *hPtr = &h;
+    Crawler bug(1, 1, 1, 1, wPtr, hPtr, north);
 
-    Craweler bug(1, 1, 1, 1, wPtr, hPtr, north);
-
-    cout << bug.getX() << endl;
+    cout << bug.getX() << "-" <<  bug.getY() << "-" << bug.getDir() << endl;
 
     bug.move();
 
-    cout << bug.getX() << endl;
+    cout << bug.getX() << "-" << bug.getY() << "-" << bug.getDir() << endl;
+
+    cout << bug.getY() - 1 << endl;
+
+
+    for (int i = 0;i < 100;i++) {
+        bug.move();
+        cout << bug.getX() << "-" << bug.getY() << "-" << bug.getDir() << endl;
+    }
+
+    
+
+
 
 
     return 0;
