@@ -43,7 +43,7 @@ public:
     const std::list<std::pair<int, int>>& getPath() const;
 
     virtual void move();
-    virtual void changePos(int* z, int by);
+    virtual bool changePos(int& z, int by);
 
     bool isWayBlocked();
 

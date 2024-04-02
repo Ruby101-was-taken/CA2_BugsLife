@@ -10,9 +10,10 @@
 
 
 
-void Bug::changePos(int* z, int by) {
+bool Bug::changePos(int& z, int by) {
     if (not isWayBlocked()) {
-        *z += by;
+        z += by;
+        return true;
     }
     else {
         bool canMove = false;
@@ -20,18 +21,28 @@ void Bug::changePos(int* z, int by) {
         while (not canMove) {
             int rand = randInt(1, 4);
 
+            direction dirBefore = getDir();
+
             switch (rand) {
                 case 1:
-                    setDir(north);
+                    setDir((dirBefore != north)? north : south);
+                    if (isWayBlocked())
+                        setDir(south);
                     break;
-                case 2: 
-                    setDir(east);
+                case 2:
+                    setDir((dirBefore != east) ? east : west);
+                    if (isWayBlocked())
+                        setDir(west);
                     break;
                 case 3:
-                    setDir(south);
+                    setDir((dirBefore != south) ? south : north);
+                    if (isWayBlocked())
+                        setDir(north);
                     break;
                 case 4:
-                    setDir(west);
+                    setDir((dirBefore != west) ? west : east);
+                    if (isWayBlocked())
+                        setDir(east);
                     break;
                 default: //if it ever gets to here then something went... very very wrong
                     setDir(north);
@@ -43,6 +54,9 @@ void Bug::changePos(int* z, int by) {
 
         }
         move();
+
+
+        return false;
     }
 
     
@@ -53,22 +67,22 @@ void Bug::move() {
     switch (getDir()) {
         case north:
             y = getY();
-            changePos(&y, -1);
-            setY(y);
+            if(changePos(y, -1))
+                setY(y);
             break;
         case south:
             y = getY();
-            changePos(&y, 1);
-            setY(y);
+            if (changePos(y, 1))
+                setY(y);
             break;
         case east:
             x = getX();
-            changePos(&x, 1);
+            changePos(x, 1);
             setX(x);
             break;
         case west:
             x = getX();
-            changePos(&x, -1);
+            changePos(x, -1);
             setX(x);
             break;
     }
