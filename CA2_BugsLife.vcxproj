@@ -171,6 +171,7 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
   <ItemGroup>
     <ClCompile Include="Bug.cpp" />
     <ClCompile Include="Crawler.cpp" />
+    <ClCompile Include="fileReader.cpp" />
     <ClCompile Include="generalFunctions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="shapeDefine.cpp" />
@@ -179,6 +180,7 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="Bug.h" />
     <ClInclude Include="Crawler.h" />
     <ClInclude Include="direction.h" />
+    <ClInclude Include="fileReader.h" />
     <ClInclude Include="generalFunctions.h" />
     <ClInclude Include="shapeDefine.h" />
   </ItemGroup>

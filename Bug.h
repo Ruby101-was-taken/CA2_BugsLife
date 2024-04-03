@@ -33,6 +33,10 @@ public:
     void setX(const unsigned int x);
     void setY(const unsigned int y);
 
+    std::pair<int, int> getPos();
+
+    std::list<std::pair<int, int>> getPath();
+
     direction getDir() const;
     void setDir(direction d);
 

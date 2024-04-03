@@ -30,6 +30,9 @@
     <ClCompile Include="shapeDefine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fileReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bug.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="shapeDefine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fileReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

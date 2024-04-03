@@ -4,6 +4,7 @@
 
 #include "Bug.h"
 #include "direction.h"
+#include "generalFunctions.h"
 
 #include <iostream>
 
@@ -16,6 +17,7 @@ Bug::Bug(unsigned int id, unsigned int x, unsigned int y, unsigned int size, int
     this->alive = true; // the bug should never start dead so this is always true
 
     this->boardW = w; this->boardH = h; // gives each bug a way of knowing the size of the board
+
 }
 
 unsigned int Bug::getId() const {
@@ -35,6 +37,14 @@ void Bug::setX(const unsigned int x) {
 void Bug::setY(const unsigned int y) {
     position.second = y;
 }
+std::pair<int, int> Bug::getPos() {
+    return position;
+}
+
+std::list<std::pair<int, int>> Bug::getPath() {
+    return path;
+}
+
 
 direction Bug::getDir() const {
     return dir;
@@ -44,6 +54,7 @@ void Bug::setDir(direction d) { dir = d; }
 unsigned int Bug::getSize() const {
     return size;
 }
+
 
 bool Bug::isAlive() const {
     return alive;
@@ -66,3 +77,54 @@ bool Bug::isWayBlocked() {
     }
 }
 
+bool Bug::changePos(int& z, int by) {
+    if (not isWayBlocked()) {
+        z += by;
+        return true;
+    }
+    else {
+        bool canMove = false;
+
+        while (not canMove) {
+            int rand = randInt(1, 4);
+
+            direction dirBefore = getDir();
+
+            switch (rand) {
+            case 1:
+                setDir((dirBefore != north) ? north : south);
+                if (isWayBlocked())
+                    setDir(south);
+                break;
+            case 2:
+                setDir((dirBefore != east) ? east : west);
+                if (isWayBlocked())
+                    setDir(west);
+                break;
+            case 3:
+                setDir((dirBefore != south) ? south : north);
+                if (isWayBlocked())
+                    setDir(north);
+                break;
+            case 4:
+                setDir((dirBefore != west) ? west : east);
+                if (isWayBlocked())
+                    setDir(east);
+                break;
+            default: //if it ever gets to here then something went... very very wrong
+                setDir(north);
+            }
+
+
+            canMove = not isWayBlocked();
+
+
+        }
+        move();
+
+
+        return false;
+    }
+
+
+}

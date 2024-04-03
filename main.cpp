@@ -13,6 +13,8 @@
 
 #include "shapeDefine.h"
 
+#include "fileReader.h"
+
 using namespace std;
 
 int w = 10, h = 10;
@@ -22,10 +24,13 @@ int gridSize = 48;
 
 void moveBugs(vector<Bug> &allBugs) {
     vector<Bug>::iterator it;
+    //cout << "=====" << endl;
     for (it = allBugs.begin(); it != allBugs.end(); it++) {
+        //cout << it->getId() << "----" << endl;
         it->move();
-        cout << "X: " << it->getX() << " Y: " << it->getY() << " DIR: " << it->getDir() << endl;
+        //cout << "X: " << it->getX() << " Y: " << it->getY() << " DIR: " << it->getDir() << endl;
     }
+    //cout << "=====" << endl;
 }
 
 void drawBugs(vector<Bug>& allBugs, sf::RenderWindow &win) {
@@ -38,18 +43,11 @@ void drawBugs(vector<Bug>& allBugs, sf::RenderWindow &win) {
 }
 
 int main() {
-
-
-    srand(time(NULL));
-
-    vector<Bug> allBugs;
-
     int* wPtr = &w, * hPtr = &h;
 
-    Crawler bug(1, 5, 2, 1, wPtr, hPtr, north);
+    vector<Bug> allBugs = readBugFile(wPtr, hPtr);
 
-
-    allBugs.push_back(bug);
+    srand(time(NULL));
 
     sf::RectangleShape board = makeRect(0, 0, 480, 480, sf::Color(10, 100, 0));
         
