@@ -1,0 +1,66 @@
+# Ignore compiled files
+*.o
+*.out
+
+# Ignore temporary files
+*.tmp
+*.temp
+
+# Ignore log files
+*.log
+
+# Ignore IDE and editor-specific files
+.idea/
+.vscode/
+
+# Ignore dependencies and build artifacts
+node_modules/
+build/
+dist/
+
+# Ignore environment-specific files
+.env
+.env.local
+.env.*.local
+.env.test
+.env.production
+
+# Ignore sensitive or personal files
+passwords.txt
+secret.key
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore backup files
+*.bak
+
+# Ignore files generated during testing
+coverage/
+
+# Ignore package-lock.json for npm projects
+package-lock.json
+
+# Ignore compiled Python bytecode
+__pycache__/
+*.pyc
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore macOS metadata
+._*
+
+# Ignore compiled Java classes
+*.class
+
+# Ignore files related to your specific development environment
+.gradle/
+
+# Ignore Visual studio c++ file
+*.obj
+*.tlog
+
+# Ignore build folders
+x64/

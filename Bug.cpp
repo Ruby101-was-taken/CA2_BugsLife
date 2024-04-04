@@ -59,6 +59,9 @@ unsigned int Bug::getSize() const {
 bool Bug::isAlive() const {
     return alive;
 }
+void Bug::die() {
+    alive = false;
+}
 
 const std::list<std::pair<int, int>>& Bug::getPath() const {
     return path;

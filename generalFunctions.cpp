@@ -61,3 +61,13 @@ direction intToDir(int i) {
 			break;
 	}
 }
+
+bool pairInVector(const std::vector<std::pair<int, int>>& v, const std::pair<int, int>& p) {
+	std::vector<std::pair<int, int>>::const_iterator it;
+	for (it = v.begin(); it != v.end(); it++) {
+		if (*it == p) {
+			return true;
+		}
+	}
+	return false;
+}

@@ -43,6 +43,7 @@ public:
     unsigned int getSize() const;
 
     bool isAlive() const;
+    void die();
 
     const std::list<std::pair<int, int>>& getPath() const;
 
