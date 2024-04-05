@@ -40,6 +40,7 @@ void moveBugs(vector<Bug> &allBugs) {
                 else if ((*pit)->getSize() < it->getSize()) {
                     (*pit)->die();
                     pit = movedBugs.erase(pit);
+                    pit--;
                 }
                 else
                     found = true;
