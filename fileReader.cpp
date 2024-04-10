@@ -8,6 +8,7 @@
 #include "generalFunctions.h"
 #include "Bug.h"
 #include "Crawler.h"
+#include "Hopper.h"
 
 
 std::vector<Bug*> readBugFile(int* w, int* h) {
@@ -25,6 +26,9 @@ std::vector<Bug*> readBugFile(int* w, int* h) {
 
             if (line[0] == "C") {
                 allBugs.push_back(new Crawler(strToInt(line[1]), strToInt(line[2]), strToInt(line[3]), strToInt(line[5]), w, h, intToDir(strToInt(line[4]))));
+            }
+            else if (line[0] == "H") {
+                allBugs.push_back(new Hopper(strToInt(line[1]), strToInt(line[2]), strToInt(line[3]), strToInt(line[5]), w, h, intToDir(strToInt(line[4])), intToDir(strToInt(line[6]))));
             }
         }
         fin.close();

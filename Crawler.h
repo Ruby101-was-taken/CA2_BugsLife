@@ -13,6 +13,7 @@ public:
     using Bug::Bug;
 
     void move();
+    void update();
 
 };
 

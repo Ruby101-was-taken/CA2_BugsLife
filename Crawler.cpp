@@ -8,7 +8,9 @@
 
 #include <iostream>
 
+void Crawler::update() {
 
+}
 
 void Crawler::move() {
     int x = 0, y = 0;

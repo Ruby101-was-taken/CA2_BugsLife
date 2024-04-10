@@ -6,6 +6,7 @@
 #include "generalFunctions.h"
 
 #include "Crawler.h"
+#include "Hopper.h"
 
 #include <random>
 
@@ -76,8 +77,23 @@ void drawBugs(vector<Bug*>& allBugs, sf::RenderWindow &win) {
     }
 }
 
+void updateBugs(vector<Bug*>& allBugs) {
+    vector<Bug*>::iterator it;
+    for (it = allBugs.begin(); it != allBugs.end(); it++) {
+        (*it)->update();
+    }
+}
+
 int main() {
     int* wPtr = &w, * hPtr = &h;
+
+    vector<sf::RectangleShape> boardSquares;
+    for (int y = 0; y < h; y++) {
+        for (int x = 0; x < w; x++) {
+            boardSquares.push_back(makeRect(x * gridSize, y * gridSize, gridSize, gridSize, sf::Color((x * (255/w)) % 255, 0, (y * (255 / h)) % 255)));
+        }
+    }
+
 
     vector<Bug*> allBugs = readBugFile(wPtr, hPtr);
 
@@ -101,11 +117,17 @@ int main() {
             }
         }
 
+
+        updateBugs(allBugs);
         
 
         win.clear();
 
         win.draw(board);
+
+        for (sf::RectangleShape r : boardSquares) {
+            win.draw(r);
+        }
 
         drawBugs(allBugs, win);
 

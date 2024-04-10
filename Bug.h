@@ -52,6 +52,8 @@ public:
     virtual void move() = 0;
     virtual bool changePos(int& z, int by);
 
+    virtual void update() = 0;
+
     bool isWayBlocked();
 
  
