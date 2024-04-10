@@ -6,7 +6,7 @@
 #include <vector>
 
 
-std::vector<Bug> readBugFile(int* w, int* h);
+std::vector<Bug*> readBugFile(int* w, int* h);
 
 
 #endif // FILEREADER_H

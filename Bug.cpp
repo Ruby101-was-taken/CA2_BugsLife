@@ -19,6 +19,16 @@ Bug::Bug(unsigned int id, unsigned int x, unsigned int y, unsigned int size, int
     this->boardW = w; this->boardH = h; // gives each bug a way of knowing the size of the board
 
 }
+Bug::Bug() {
+    this->id = 1;
+    this->position.first = 0; this->position.second = 0;
+    this->size = 1 % 20; // the size may only be 1 - 20 so this prevents it goinf higher
+    this->dir = south;
+    this->alive = true; // the bug should never start dead so this is always true
+
+    this->boardW = 0; this->boardH = 0; // gives each bug a way of knowing the size of the board
+
+}
 
 unsigned int Bug::getId() const {
     return id;

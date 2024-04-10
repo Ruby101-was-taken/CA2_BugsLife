@@ -12,6 +12,8 @@
 # Ignore IDE and editor-specific files
 .idea/
 .vscode/
+*.vcxproj
+*.filters
 
 # Ignore dependencies and build artifacts
 node_modules/

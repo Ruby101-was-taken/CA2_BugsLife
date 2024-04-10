@@ -11,6 +11,7 @@
 
 
 class Bug {
+protected:
     unsigned int id;
     std::pair<int, int> position;
     direction dir;
@@ -23,6 +24,7 @@ class Bug {
 public:
 
     Bug(unsigned int id, unsigned int x, unsigned int y, unsigned int size, int* w, int* h, direction dir = north);
+    Bug();
 
     unsigned int getId() const;
 
@@ -47,10 +49,12 @@ public:
 
     const std::list<std::pair<int, int>>& getPath() const;
 
-    virtual void move();
+    virtual void move() = 0;
     virtual bool changePos(int& z, int by);
 
     bool isWayBlocked();
+
+ 
 
 };
 

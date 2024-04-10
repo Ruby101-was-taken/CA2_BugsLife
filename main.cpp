@@ -24,20 +24,20 @@ int gridSize = 48;
 
 
 
-void moveBugs(vector<Bug> &allBugs) {
-    vector<Bug>::iterator it;
+void moveBugs(vector<Bug*> &allBugs) {
+    vector<Bug*>::iterator it;
     vector<Bug*> movedBugs;
     for (it = allBugs.begin(); it != allBugs.end(); it++) {
-        it->move();
+        (*it)->move();
 
-        pair<int, int> curPos = it->getPos();
+        pair<int, int> curPos = (*it)->getPos();
         bool found = false;
         vector<Bug*>::const_iterator pit;
         for (pit = movedBugs.begin(); pit != movedBugs.end(); pit++) {
             if ((*pit)->getPos() == curPos) {
-                if ((*pit)->getSize() >= it->getSize())
-                    it->die();
-                else if ((*pit)->getSize() < it->getSize()) {
+                if ((*pit)->getSize() >= (*it)->getSize())
+                    (*it)->die();
+                else if ((*pit)->getSize() < (*it)->getSize()) {
                     (*pit)->die();
                     pit = movedBugs.erase(pit);
                     pit--;
@@ -48,16 +48,16 @@ void moveBugs(vector<Bug> &allBugs) {
         }
         
         if (not found) {
-            movedBugs.push_back(&(*it));
+            movedBugs.push_back(*it);
         }
     }
 }
 
 
-void removeDeadBugs(vector<Bug>& allBugs) {
-    vector<Bug>::iterator it;
+void removeDeadBugs(vector<Bug*>& allBugs) {
+    vector<Bug*>::iterator it;
     for (it = allBugs.begin(); it != allBugs.end();) {
-        if (it->isAlive()) {
+        if ((*it)->isAlive()) {
             it++; 
         }
         else {
@@ -67,11 +67,11 @@ void removeDeadBugs(vector<Bug>& allBugs) {
 }
 
 
-void drawBugs(vector<Bug>& allBugs, sf::RenderWindow &win) {
-    vector<Bug>::iterator it;
+void drawBugs(vector<Bug*>& allBugs, sf::RenderWindow &win) {
+    vector<Bug*>::iterator it;
     for (it = allBugs.begin(); it != allBugs.end(); it++) {
-        sf::RectangleShape testBug = makeRect(0, 0, gridSize, gridSize, sf::Color(15+(it->getSize()*12), 240-(it->getSize() * 12), 0));
-        updateRectPos(testBug, it->getX() * gridSize, it->getY() * gridSize);
+        sf::RectangleShape testBug = makeRect(0, 0, gridSize, gridSize, sf::Color(15+((*it)->getSize()*12), 240-((*it)->getSize() * 12), 0));
+        updateRectPos(testBug, (*it)->getX() * gridSize, (*it)->getY() * gridSize);
         win.draw(testBug);
     }
 }
@@ -79,7 +79,7 @@ void drawBugs(vector<Bug>& allBugs, sf::RenderWindow &win) {
 int main() {
     int* wPtr = &w, * hPtr = &h;
 
-    vector<Bug> allBugs = readBugFile(wPtr, hPtr);
+    vector<Bug*> allBugs = readBugFile(wPtr, hPtr);
 
     srand(time(NULL));
 
