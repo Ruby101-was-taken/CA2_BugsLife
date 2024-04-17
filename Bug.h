@@ -9,6 +9,8 @@
 #include <list>
 #include "direction.h"
 
+#include <string>
+
 
 class Bug {
 protected:
@@ -29,8 +31,8 @@ public:
     unsigned int getId() const;
 
 
-    int getX() const;
-    int getY() const;
+    int getX() ;
+    int getY() ;
 
     void setX(const unsigned int x);
     void setY(const unsigned int y);
@@ -43,6 +45,7 @@ public:
     void setDir(direction d);
 
     unsigned int getSize() const;
+    void grow(unsigned int by);
 
     bool isAlive() const;
     void die();
@@ -54,9 +57,9 @@ public:
 
     virtual void update() = 0;
 
-    bool isWayBlocked();
+    bool isWayBlocked() ;
 
- 
+    std::string getPosStr();
 
 };
 

@@ -7,6 +7,7 @@
 #include "generalFunctions.h"
 
 #include <iostream>
+#include <string>
 
 
 Bug::Bug(unsigned int id, unsigned int x, unsigned int y, unsigned int size, int* w, int* h, direction dir) {
@@ -34,10 +35,10 @@ unsigned int Bug::getId() const {
     return id;
 }
 
-int Bug::getX() const {
+int Bug::getX()  {
     return position.first;
 }
-int Bug::getY() const {
+int Bug::getY()  {
     return position.second;
 }
 
@@ -64,7 +65,9 @@ void Bug::setDir(direction d) { dir = d; }
 unsigned int Bug::getSize() const {
     return size;
 }
-
+void Bug::grow(unsigned int by) {
+    size += by;
+}
 
 bool Bug::isAlive() const {
     return alive;
@@ -140,4 +143,8 @@ bool Bug::changePos(int& z, int by) {
     }
 
 
+}
+
+std::string Bug::getPosStr() {
+    return std::to_string(getX()) + ", " + std::to_string(getY());
 }
