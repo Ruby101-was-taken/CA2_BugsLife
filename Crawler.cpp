@@ -13,6 +13,13 @@ void Crawler::update() {
 }
 
 void Crawler::move() {
+
+    bool wayBlocked = isWayBlocked();
+    while (wayBlocked) {
+        randomiseDirection();
+        wayBlocked = isWayBlocked();
+    }
+
     int x = 0, y = 0;
     switch (dir) {
         case north:

@@ -54,7 +54,7 @@ direction intToDir(int i) {
 			return south;
 			break;
 		case 4:
-			return east;
+			return west;
 			break;
 		default:
 			return north;

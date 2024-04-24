@@ -82,66 +82,39 @@ const std::list<std::pair<int, int>>& Bug::getPath() const {
 
 bool Bug::isWayBlocked() {
     switch (dir) {
-    case north:
-        return getY() - 1 < 0;
-    case south:
-        return getY() + 1 >= *boardH;
-    case east:
-        return getX() + 1 >= *boardW;
-    case west:
-        return getX() - 1 < 0;
+        case north:
+            return getY() - 1 < 0;
+        case south:
+            return getY() + 1 >= *boardH;
+        case east:
+            return getX() + 1 >= *boardW;
+        case west:
+            return getX() - 1 < 0;
     }
 }
 
-bool Bug::changePos(int& z, int by) {
+void Bug::randomiseDirection() {
+    int random = randInt(1, 4);
+
+    this->dir = intToDir(random);
+}
+
+bool Bug::changePos(int& z, int by, const int limit) {
+
+
+
     if (not isWayBlocked()) {
         z += by;
+
+        if (z < 0) {
+            z = 0;
+        }
+        else if (z >= limit) {
+            z = limit - 1;
+        }
+
         return true;
     }
-    else {
-        bool canMove = false;
-
-        while (not canMove) {
-            int rand = randInt(1, 4);
-
-            direction dirBefore = getDir();
-
-            switch (rand) {
-            case 1:
-                setDir((dirBefore != north) ? north : south);
-                if (isWayBlocked())
-                    setDir(south);
-                break;
-            case 2:
-                setDir((dirBefore != east) ? east : west);
-                if (isWayBlocked())
-                    setDir(west);
-                break;
-            case 3:
-                setDir((dirBefore != south) ? south : north);
-                if (isWayBlocked())
-                    setDir(north);
-                break;
-            case 4:
-                setDir((dirBefore != west) ? west : east);
-                if (isWayBlocked())
-                    setDir(east);
-                break;
-            default: //if it ever gets to here then something went... very very wrong
-                setDir(north);
-            }
-
-
-            canMove = not isWayBlocked();
-
-
-        }
-        move();
-
-
-        return false;
-    }
-
 
 }
 

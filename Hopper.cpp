@@ -7,7 +7,7 @@ Hopper::Hopper(unsigned int id, unsigned int x, unsigned int y, unsigned int siz
     this->size = size % 20; // the size may only be 1 - 20 so this prevents it goinf higher
     this->dir = dir;
     this->alive = true; // the bug should never start dead so this is always true
-    this->hopSize = hopSize%4;
+
 
     if (this->hopSize < 2) {
         this->hopSize = 2;
@@ -17,57 +17,48 @@ Hopper::Hopper(unsigned int id, unsigned int x, unsigned int y, unsigned int siz
 
 }
 
-
 void Hopper::update() {
-    hopsLeft = hopSize;
-    hopsDone = hopSize;
 }
 
 void Hopper::move() {
-    hopsLeft = hopsDone;
-    for (int i = 0; i < hopsLeft; i++) {
-        int x = 0, y = 0;
-        switch (dir) {
-        case north:
-            y = getY();
-            if (changePos(y, -1)) {
-                setY(y);
-                path.push_back(position);
-                hopsDone -= 1;
-            }
-            else
-                return;
-            break;
-        case south:
-            y = getY();
-            if (changePos(y, 1)) {
-                setY(y);
-                path.push_back(position);
-                hopsDone -= 1;
-            }
-            else
-                return;
-            break;
-        case east:
-            x = getX();
-            if (changePos(x, 1)) {
-                setX(x);
-                path.push_back(position);
-                hopsDone -= 1;
-            }
-            else
-                return;
-            break;
-        case west:
-            x = getX();
-            if (changePos(x, -1)) {
-                setX(x);
-                path.push_back(position);
-                hopsDone -= 1;
-            }
-            else
-                return;
-            break;
-        }
+
+
+    bool wayBlocked = isWayBlocked();
+    while (wayBlocked) {
+        randomiseDirection();
+        wayBlocked = isWayBlocked();
     }
+
+    int x = 0, y = 0;
+    switch (dir) {
+    case north:
+        y = getY();
+        if (changePos(y, -hopSize)) {
+            setY(y);
+            path.push_back(position);
+        }
+        break;
+    case south:
+        y = getY();
+        if (changePos(y, hopSize)) {
+            setY(y);
+            path.push_back(position);
+        }
+        break;
+    case east:
+        x = getX();
+        if (changePos(x, hopSize)) {
+            setX(x);
+            path.push_back(position);
+        }
+        break;
+    case west:
+        x = getX();
+        if (changePos(x, -hopSize)) {
+            setX(x);
+            path.push_back(position);
+        }
+        break;
+    }
+    
 }

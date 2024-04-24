@@ -53,7 +53,7 @@ public:
     const std::list<std::pair<int, int>>& getPath() const;
 
     virtual void move() = 0;
-    virtual bool changePos(int& z, int by);
+    virtual bool changePos(int& z, const int by, const int limit = 10);
 
     virtual void update() = 0;
 
@@ -61,6 +61,7 @@ public:
 
     std::string getPosStr();
 
+    void randomiseDirection();
 };
 
 
