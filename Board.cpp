@@ -19,16 +19,17 @@ Board::Board(int w, int h, int gridSize) {
 	wPtr = &this->w;
 	hPtr = &this->h;
 
-	allBugs = readBugFile(wPtr, hPtr);
+    player = new Player(100, 0, 5, 5, wPtr, hPtr, east);
+    player->setTexture("images/player.png");
+
+	allBugs = readBugFile(wPtr, hPtr, player);
+
+    allBugs.push_back(player);
+
     std::vector<Bug*>::iterator it;
     for (it = allBugs.begin(); it != allBugs.end(); it++) {
         aliveBugs.push_back((*it));
     }
-
-    player = new Player(100, 0, 5, 5, wPtr, hPtr, east);
-    player->setTexture("images/player.png");
-    allBugs.push_back(player);
-    aliveBugs.push_back(player);
 
 
     for (int y = 0; y < h; y++) {

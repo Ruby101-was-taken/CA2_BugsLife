@@ -19,9 +19,10 @@
 #include "Spoober.h"
 #include "Voober.h"
 #include "Voosher.h"
+#include "Hater.h"
 
 
-std::vector<Bug*> readBugFile(int* w, int* h) {
+std::vector<Bug*> readBugFile(int* w, int* h, Bug* player) {
 	std::vector<Bug*> allBugs;
 
     std::map<std::string, std::string> textures = {
@@ -32,7 +33,8 @@ std::vector<Bug*> readBugFile(int* w, int* h) {
        {"ST", "images/stoober.png"},
        {"SP", "images/spoober.png"},
        {"V", "images/voober.png"},
-       {"VH", "images/voosher.png"}
+       {"VH", "images/voosher.png"},
+       {"HA", "images/hater.png"}
     };
 
     std::ifstream fin("bugs.txt");
@@ -76,6 +78,10 @@ std::vector<Bug*> readBugFile(int* w, int* h) {
                 }
                 else if (line[0] == "HO") {
                     allBugs.push_back(new Hooper(strToInt(line[1]), strToInt(line[2]), strToInt(line[3]), strToInt(line[5]), w, h, intToDir(strToInt(line[4]))));
+                    allBugs.back()->setTexture(textures[line[0]]);
+                }
+                else if (line[0] == "HA") {
+                    allBugs.push_back(new Hater(strToInt(line[1]), strToInt(line[2]), strToInt(line[3]), strToInt(line[5]), w, h, intToDir(strToInt(line[4])), player));
                     allBugs.back()->setTexture(textures[line[0]]);
                 }
             }
