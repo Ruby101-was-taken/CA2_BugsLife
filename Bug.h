@@ -23,6 +23,8 @@ protected:
     const int* boardW;
     const int* boardH;
 
+    int murderer;
+
 public:
 
     Bug(unsigned int id, unsigned int x, unsigned int y, unsigned int size, int* w, int* h, direction dir = north);
@@ -48,7 +50,7 @@ public:
     void grow(unsigned int by);
 
     bool isAlive() const;
-    void die();
+    void die(int murder);
 
     const std::list<std::pair<int, int>>& getPath() const;
 
@@ -62,6 +64,12 @@ public:
     std::string getPosStr();
 
     void randomiseDirection();
+
+
+    bool isClicked(int mx, int my);
+
+    virtual std::string getInfo() = 0;
+    std::string getHistory();
 };
 
 

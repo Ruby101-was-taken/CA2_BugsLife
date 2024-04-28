@@ -15,6 +15,7 @@ public:
     void move();
     void update();
 
+    std::string getInfo();
 };
 
 

@@ -7,8 +7,9 @@ using namespace sf;
 
 CircleShape makeCircle(int x, int y, int r, Color colour = Color::Blue, int outlineW = 0, Color outlineColour = Color::Black);
 
-RectangleShape makeRect(int x, int y, int w, int h, Color colour);
+RectangleShape makeRect(int x, int y, int w, int h, Color colour, int outlineW = 0, Color outlineColour = Color::Black);
 
+Text makeText(std::string words, int x, int y, int fontSize, Color colour);
 
 void updateCirPos(CircleShape& circle, const int& x, const int& y);
 void updateRectPos(RectangleShape& rect, const int& x, const int& y);

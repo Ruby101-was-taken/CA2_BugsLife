@@ -8,5 +8,7 @@
 
 std::vector<Bug*> readBugFile(int* w, int* h);
 
+void writeBugFile(std::vector<Bug*> bugs);
+
 
 #endif // FILEREADER_H

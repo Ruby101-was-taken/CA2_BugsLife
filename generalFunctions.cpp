@@ -14,18 +14,20 @@ int randInt(int min, int max) {
 std::vector<std::string> splitString(const std::string& str, const char delimiter) {
 	std::vector<std::string> returnStrings;
 	std::string tempStr = "";
-	for (int i = 0;i < str.length();i++) {
-		if (str[i] == delimiter) {
-			returnStrings.push_back(tempStr);
-			tempStr = "";
+	if (str.length() > 0) {
+		for (int i = 0;i < str.length();i++) {
+			if (str[i] == delimiter) {
+				returnStrings.push_back(tempStr);
+				tempStr = "";
+			}
+			else {
+				tempStr += str[i];
+			}
 		}
-		else {
-			tempStr += str[i];
-		}
-	}
 
-	if(tempStr.length() > 0) //adds the last string is there is no delimiter at the end :3
-		returnStrings.push_back(tempStr);
+		if (tempStr.length() > 0) //adds the last string is there is no delimiter at the end :3
+			returnStrings.push_back(tempStr);
+	}
 
 	return returnStrings;
 }
@@ -62,6 +64,8 @@ direction intToDir(int i) {
 	}
 }
 
+
+
 bool pairInVector(const std::vector<std::pair<int, int>>& v, const std::pair<int, int>& p) {
 	std::vector<std::pair<int, int>>::const_iterator it;
 	for (it = v.begin(); it != v.end(); it++) {
@@ -70,4 +74,21 @@ bool pairInVector(const std::vector<std::pair<int, int>>& v, const std::pair<int
 		}
 	}
 	return false;
+}
+
+
+std::string dirToStr(direction d) {
+	switch (d)
+	{
+	case north:
+		return "North";
+	case east:
+		return "East";
+	case south:
+		return "South";
+	case west:
+		return "West";
+	default:
+		return "???";
+	}
 }

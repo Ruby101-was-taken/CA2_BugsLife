@@ -52,3 +52,11 @@ void Crawler::move() {
             break;
     }
 }
+
+std::string Crawler::getInfo() {
+    return "Crawler: " + std::to_string(id) + 
+        "\nPosition: (" + std::to_string(position.first) + ", " + std::to_string(position.second) + ")" + 
+        "\nSize: " + std::to_string(size) + 
+        "\nDirection: " + dirToStr(dir) + 
+        "\nStatus: " + ((alive) ? "Alive" : "Dead -> Killed by " + std::to_string(murderer));
+}

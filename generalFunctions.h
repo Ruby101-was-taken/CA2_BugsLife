@@ -19,4 +19,6 @@ direction intToDir(int i);
 
 bool pairInVector(const std::vector<std::pair<int, int>>& v, const std::pair<int, int>& p);
 
+std::string dirToStr(direction d);
+
 #endif //CA2_BUGSLIFE_GENERALFUNCTIONS_H

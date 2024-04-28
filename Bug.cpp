@@ -19,6 +19,7 @@ Bug::Bug(unsigned int id, unsigned int x, unsigned int y, unsigned int size, int
 
     this->boardW = w; this->boardH = h; // gives each bug a way of knowing the size of the board
 
+    path.push_back(position);
 }
 Bug::Bug() {
     this->id = 1;
@@ -72,8 +73,9 @@ void Bug::grow(unsigned int by) {
 bool Bug::isAlive() const {
     return alive;
 }
-void Bug::die() {
+void Bug::die(int murderer) {
     alive = false;
+    this->murderer = murderer;
 }
 
 const std::list<std::pair<int, int>>& Bug::getPath() const {
@@ -120,4 +122,19 @@ bool Bug::changePos(int& z, int by, const int limit) {
 
 std::string Bug::getPosStr() {
     return std::to_string(getX()) + ", " + std::to_string(getY());
+}
+
+
+bool Bug::isClicked(int mx, int my) {
+    int x = position.first * 48;
+    int y = position.second * 48;
+    return mx >= x and mx <= x + 48 and my >= y and my <= y + 48;
+}
+
+std::string Bug::getHistory() {
+    std::string returnString = std::to_string(id) + "'s history" + ((path.size() > 15) ? "\n(Scroll): \n" : ":\n");
+    for (auto it = path.rbegin(); it != path.rend(); ++it) {
+        returnString += std::to_string(it->first) + ", " + std::to_string(it->second) + "\n";
+    }
+    return returnString;
 }

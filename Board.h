@@ -4,8 +4,11 @@
 #include "Bug.h"
 #include <SFML/Graphics.hpp>
 
+#include <string>
+
 class Board
 {
+	std::vector<Bug*> aliveBugs;
 	std::vector<Bug*> allBugs;
 
 	int w, h;
@@ -13,6 +16,8 @@ class Board
 	int gridSize;
 
 	std::vector<sf::RectangleShape> boardSquares;
+
+	int currentId;
 
 
 public:
@@ -26,5 +31,15 @@ public:
 	void moveBugs();
 
 	void drawBoard(sf::RenderWindow& win);
+
+	Bug* getBugById(const unsigned int& id);
+	std::string getBugInfoById(const unsigned int& id);
+
+	bool checkClicked(const unsigned int& mx, const unsigned int& my, sf::Text& infoText, sf::Text& historyText);
+
+
+	std::string getAllCellInfo();
+
+	~Board();
 };
 
