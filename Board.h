@@ -2,9 +2,13 @@
 
 #include <vector>
 #include "Bug.h"
+#include "Player.h"
 #include <SFML/Graphics.hpp>
 
+#include "Point.h"
+
 #include <string>
+#include <map>
 
 class Board
 {
@@ -19,11 +23,19 @@ class Board
 
 	int currentId;
 
+	Bug* player;
+
+	std::map<std::string, Point> points;
+
 
 public:
 	Board(int w, int h, int gridSize);
 
 	void draw(sf::RenderWindow& win);
+
+	Bug* getPlayer();
+
+	void addPoints();
 
 	void updateBugs();
 	void drawBugs(sf::RenderWindow& win);
@@ -31,6 +43,7 @@ public:
 	void moveBugs();
 
 	void drawBoard(sf::RenderWindow& win);
+	void drawPoints(sf::RenderWindow& win);
 
 	Bug* getBugById(const unsigned int& id);
 	std::string getBugInfoById(const unsigned int& id);

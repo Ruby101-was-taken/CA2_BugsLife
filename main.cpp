@@ -46,6 +46,11 @@ void viewCells(Board& board) {
     sideBugHistoryText.setPosition(640, 0);
 }
 
+void resetText() {
+    sideBugInfoText.setString("Click a bug to see it's info and history");
+    sideBugHistoryText.setString("");
+    sideBugHistoryText.setPosition(680, 0);
+}
 
 int main() {
     int* wPtr = &w, * hPtr = &h;
@@ -79,9 +84,7 @@ int main() {
                 scrollPos = 0;
 
                 if (not board.checkClicked(mousePosition.x / winScale.first, mousePosition.y / winScale.second, sideBugInfoText, sideBugHistoryText)) {
-                    sideBugInfoText.setString("Click a bug to see it's info and history");
-                    sideBugHistoryText.setString("");
-                    sideBugHistoryText.setPosition(680, 0);
+                    resetText();
                 }
 
                 for (auto& b : buttons) {
@@ -105,8 +108,38 @@ int main() {
 
             }
         }
+        // https://www.sfml-dev.org/documentation/2.6.1/classsf_1_1Keyboard.php
 
-
+        if (board.getPlayer()->isAlive()) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+            {
+                board.getPlayer()->setDir(west);
+                resetText();
+                sideBugInfoText.setString(board.getPlayer()->getInfo());
+                sideBugHistoryText.setString(board.getPlayer()->getHistory());
+            }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+            {
+                board.getPlayer()->setDir(east);
+                resetText();
+                sideBugInfoText.setString(board.getPlayer()->getInfo());
+                sideBugHistoryText.setString(board.getPlayer()->getHistory());
+            }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+            {
+                board.getPlayer()->setDir(north);
+                resetText();
+                sideBugInfoText.setString(board.getPlayer()->getInfo());
+                sideBugHistoryText.setString(board.getPlayer()->getHistory());
+            }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+            {
+                board.getPlayer()->setDir(south);
+                resetText();
+                sideBugInfoText.setString(board.getPlayer()->getInfo());
+                sideBugHistoryText.setString(board.getPlayer()->getHistory());
+            }
+        }
 
 
         board.updateBugs();
@@ -127,6 +160,8 @@ int main() {
         for (auto& b : buttons) {
             b.draw(win);
         }
+
+        win.setFramerateLimit(60); //fps to 60
 
         win.display();
     }
