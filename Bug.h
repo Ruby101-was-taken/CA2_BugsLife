@@ -11,6 +11,8 @@
 
 #include <string>
 
+#include <SFML/Graphics.hpp>
+
 
 class Bug {
 protected:
@@ -24,6 +26,9 @@ protected:
     const int* boardH;
 
     int murderer;
+
+    sf::Texture texture;
+    sf::Sprite sprite;
 
 public:
 
@@ -70,6 +75,10 @@ public:
 
     virtual std::string getInfo() = 0;
     std::string getHistory();
+
+    void setTexture(std::string t);
+
+    void draw(sf::RenderWindow& win);
 };
 
 

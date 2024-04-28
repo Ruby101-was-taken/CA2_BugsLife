@@ -26,6 +26,7 @@ Board::Board(int w, int h, int gridSize) {
     }
 
     player = new Player(100, 0, 5, 5, wPtr, hPtr, east);
+    player->setTexture("images/player.png");
     allBugs.push_back(player);
     aliveBugs.push_back(player);
 
@@ -52,9 +53,7 @@ void Board::updateBugs() {
 void Board::drawBugs(sf::RenderWindow& win) {
 	std::vector<Bug*>::iterator it;
 	for (it = aliveBugs.begin(); it != aliveBugs.end(); it++) {
-		sf::RectangleShape testBug = makeRect(0, 0, gridSize, gridSize, sf::Color(15 + ((*it)->getSize() * 12), 240 - ((*it)->getSize() * 12), 0), 3, ((*it)->getId() == 100) ? sf::Color::Yellow : sf::Color::White);
-		updateRectPos(testBug, (*it)->getX() * gridSize, (*it)->getY() * gridSize);
-		win.draw(testBug);
+        (*it)->draw(win);
 	}
 }
 void Board::removeDeadBugs() {
@@ -103,6 +102,7 @@ void Board::moveBugs() {
                     if (biggestBug != nullptr)
                         biggestBug->die((*it)->getId());
                     biggestBug = (*it);
+                    biggestSize = biggestBug->getSize();
                 }
                 else {
                     (*it)->die(biggestBug->getId());

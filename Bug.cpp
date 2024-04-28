@@ -138,3 +138,13 @@ std::string Bug::getHistory() {
     }
     return returnString;
 }
+
+void Bug::setTexture(std::string t) {
+    texture.loadFromFile(t);
+    sprite.setTexture(texture);
+}
+
+void Bug::draw(sf::RenderWindow& win) {
+    sprite.setPosition(position.first * 48, position.second * 48);
+    win.draw(sprite);
+}

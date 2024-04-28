@@ -4,6 +4,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <map>
+
+#include <SFML/Graphics.hpp>
 
 #include "generalFunctions.h"
 #include "Bug.h"
@@ -21,6 +24,17 @@
 std::vector<Bug*> readBugFile(int* w, int* h) {
 	std::vector<Bug*> allBugs;
 
+    std::map<std::string, std::string> textures = {
+       {"C", "images/crawler.png"},
+       {"H", "images/hopper.png"},
+       {"HO", "images/hooper.png"},
+       {"G", "images/goober.png"},
+       {"ST", "images/stoober.png"},
+       {"SP", "images/spoober.png"},
+       {"V", "images/voober.png"},
+       {"VH", "images/voosher.png"}
+    };
+
     std::ifstream fin("bugs.txt");
     if (fin) {
         std::string name;
@@ -34,27 +48,35 @@ std::vector<Bug*> readBugFile(int* w, int* h) {
 
                 if (line[0] == "C") {
                     allBugs.push_back(new Crawler(strToInt(line[1]), strToInt(line[2]), strToInt(line[3]), strToInt(line[5]), w, h, intToDir(strToInt(line[4]))));
+                    allBugs.back()->setTexture(textures[line[0]]);
                 }
                 else if (line[0] == "H") {
                     allBugs.push_back(new Hopper(strToInt(line[1]), strToInt(line[2]), strToInt(line[3]), strToInt(line[5]), w, h, intToDir(strToInt(line[4])), intToDir(strToInt(line[6]))));
+                    allBugs.back()->setTexture(textures[line[0]]);
                 }
                 else if (line[0] == "G") {
                     allBugs.push_back(new Goober(strToInt(line[1]), strToInt(line[2]), strToInt(line[3]), strToInt(line[5]), w, h, intToDir(strToInt(line[4]))));
+                    allBugs.back()->setTexture(textures[line[0]]);
                 }
                 else if (line[0] == "ST") {
                     allBugs.push_back(new Stoober(strToInt(line[1]), strToInt(line[2]), strToInt(line[3]), strToInt(line[5]), w, h, intToDir(strToInt(line[4]))));
+                    allBugs.back()->setTexture(textures[line[0]]);
                 }
                 else if (line[0] == "SP") {
                     allBugs.push_back(new Spoober(strToInt(line[1]), strToInt(line[2]), strToInt(line[3]), strToInt(line[5]), w, h, intToDir(strToInt(line[4]))));
+                    allBugs.back()->setTexture(textures[line[0]]);
                 }
                 else if (line[0] == "V") {
                     allBugs.push_back(new Voober(strToInt(line[1]), strToInt(line[2]), strToInt(line[3]), strToInt(line[5]), w, h, intToDir(strToInt(line[4]))));
+                    allBugs.back()->setTexture(textures[line[0]]);
                 }
                 else if (line[0] == "VH") {
                     allBugs.push_back(new Voosher(strToInt(line[1]), strToInt(line[2]), strToInt(line[3]), strToInt(line[5]), w, h, intToDir(strToInt(line[4]))));
+                    allBugs.back()->setTexture(textures[line[0]]);
                 }
                 else if (line[0] == "HO") {
                     allBugs.push_back(new Hooper(strToInt(line[1]), strToInt(line[2]), strToInt(line[3]), strToInt(line[5]), w, h, intToDir(strToInt(line[4]))));
+                    allBugs.back()->setTexture(textures[line[0]]);
                 }
             }
         }
